@@ -2,8 +2,8 @@ package user
 
 import (
 	"CSIE_ADMS_Back-End/api/user/v1"
-	"CSIE_ADMS_Back-End/argon2"
 	"CSIE_ADMS_Back-End/internal/dao"
+	"CSIE_ADMS_Back-End/utility"
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 )
@@ -13,6 +13,13 @@ func (c *ControllerV1) CreateUser(ctx context.Context, req *v1.CreateUserReq) (r
 	if err := r.Parse(&req); err != nil {
 		r.Response.WriteJsonExit(v1.CreateUserRes{
 			Error: err.Error(),
+		})
+	}
+
+	// Check if admin
+	if !utility.IsAdmin(r.GetCtxVar("id").Int()) {
+		r.Response.WriteJsonExit(v1.CreateUserRes{
+			Error: "Permission denied",
 		})
 	}
 
@@ -34,7 +41,7 @@ func (c *ControllerV1) CreateUser(ctx context.Context, req *v1.CreateUserReq) (r
 	if req.Role == "" {
 		req.Role = "user"
 	}
-	encodedHash, err := argon2.HashPWD(req.Password)
+	encodedHash, err := utility.HashPWD(req.Password)
 	if err != nil {
 		r.Response.WriteJsonExit(v1.CreateUserRes{
 			Error: err.Error(),

@@ -1,13 +1,14 @@
 package cmd
 
 import (
-	"CSIE_ADMS_Back-End/argon2"
 	"CSIE_ADMS_Back-End/internal/dao"
 	"CSIE_ADMS_Back-End/internal/model/entity"
+	"CSIE_ADMS_Back-End/utility"
 	"context"
 	"github.com/goflyfox/gtoken/gtoken"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
+	"github.com/gogf/gf/v2/util/gconv"
 	"strconv"
 )
 
@@ -29,7 +30,7 @@ func loginFunc(r *ghttp.Request) (string, interface{}) {
 	}
 
 	// Check password
-	checkPWD, err := argon2.ComparePWD(password, user.Password)
+	checkPWD, err := utility.ComparePWD(password, user.Password)
 	if err != nil {
 		r.Response.WriteJson(gtoken.Fail(err.Error()))
 		r.ExitAll()
@@ -67,4 +68,17 @@ func loginAfterFunc(r *ghttp.Request, respData gtoken.Resp) {
 	}
 	r.Response.WriteJson(respData)
 	return
+}
+
+func authAfterFunc(r *ghttp.Request, respData gtoken.Resp) {
+	userID := 0
+	err := gconv.Struct(respData.GetString("userKey"), &userID)
+	if err != nil {
+		r.Response.WriteJsonExit(g.Map{
+			"code": -1,
+			"msg":  "Please login",
+		})
+	}
+	r.SetCtxVar("id", userID)
+	r.Middleware.Next()
 }

@@ -4,7 +4,6 @@ import (
 	"CSIE_ADMS_Back-End/internal/controller/user"
 	"context"
 	"github.com/goflyfox/gtoken/gtoken"
-
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
@@ -23,17 +22,21 @@ var (
 				LoginBeforeFunc: loginFunc,
 				LoginAfterFunc:  loginAfterFunc,
 				LogoutPath:      "/logout",
+				AuthAfterFunc:   authAfterFunc,
 			}
 
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
+				group.Bind(
+					hello.NewV1(),
+				)
+
 				err := gfToken.Middleware(ctx, group)
 				if err != nil {
 					panic(err)
 				}
 				group.Bind(
-					hello.NewV1(),
 					user.NewV1(),
 				)
 			})
