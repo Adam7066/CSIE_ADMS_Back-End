@@ -27,10 +27,6 @@ func (c *ControllerV1) GetUser(ctx context.Context, req *v1.GetUserReq) (res *v1
 			}
 			id = req.Id
 		}
-	} else {
-		r.Response.WriteJsonExit(v1.GetUserRes{
-			Error: "id need to be greater than 0",
-		})
 	}
 
 	resData := v1.GetUserResData{}
