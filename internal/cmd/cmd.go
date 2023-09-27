@@ -7,6 +7,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
+	"net/http"
 
 	"CSIE_ADMS_Back-End/internal/controller/hello"
 )
@@ -27,7 +28,7 @@ var (
 
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
-				group.Middleware(ghttp.MiddlewareHandlerResponse)
+				group.Middleware(MiddlewareCORS)
 				group.Bind(
 					hello.NewV1(),
 				)
@@ -45,3 +46,13 @@ var (
 		},
 	}
 )
+
+func MiddlewareCORS(r *ghttp.Request) {
+	corsOptions := r.Response.DefaultCORSOptions()
+	corsOptions.AllowDomain = []string{"localhost"}
+	if !r.Response.CORSAllowedOrigin(corsOptions) {
+		r.Response.WriteStatusExit(http.StatusForbidden)
+	}
+	r.Response.CORS(corsOptions)
+	r.Middleware.Next()
+}
