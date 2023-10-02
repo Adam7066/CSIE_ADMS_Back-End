@@ -4,6 +4,7 @@ import (
 	"CSIE_ADMS_Back-End/internal/controller/user"
 	"context"
 	"github.com/goflyfox/gtoken/gtoken"
+	"github.com/gogf/gf/v2/container/gvar"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
@@ -19,6 +20,10 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			gfToken := &gtoken.GfToken{
+				CacheMode:       CfgGet(ctx, "gToken.CacheMode").Int8(),
+				MultiLogin:      CfgGet(ctx, "gToken.MultiLogin").Bool(),
+				Timeout:         CfgGet(ctx, "gToken.Timeout").Int(),
+				EncryptKey:      CfgGet(ctx, "gToken.EncryptKey").Bytes(),
 				LoginPath:       "/login",
 				LoginBeforeFunc: loginFunc,
 				LoginAfterFunc:  loginAfterFunc,
@@ -46,6 +51,11 @@ var (
 		},
 	}
 )
+
+func CfgGet(ctx context.Context, name string) *gvar.Var {
+	gVa, _ := g.Config().Get(ctx, name)
+	return gVa
+}
 
 func MiddlewareCORS(r *ghttp.Request) {
 	corsOptions := r.Response.DefaultCORSOptions()

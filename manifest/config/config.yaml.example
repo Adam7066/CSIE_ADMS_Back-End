@@ -1,0 +1,22 @@
+server:
+  address:     ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+logger:
+  level : "all"
+  stdout: true
+
+database:
+  logger:
+    level: "all"
+    stdout: true
+
+  default:
+    link: "sqlite::@file(./CSIE_ADMS_DB.sqlite3)"
+
+gToken:
+  CacheMode: 1
+  MultiLogin: false
+  Timeout: 864000000 # ms (Default: 10 days)
+  EncryptKey: "12345678912345678912345678912345" # Please change this key
