@@ -13,6 +13,7 @@ import (
 type IUserV1 interface {
 	CreateUser(ctx context.Context, req *v1.CreateUserReq) (res *v1.CreateUserRes, err error)
 	GetUser(ctx context.Context, req *v1.GetUserReq) (res *v1.GetUserRes, err error)
+	GetUsers(ctx context.Context, req *v1.GetUsersReq) (res *v1.GetUsersRes, err error)
 	UpdateUser(ctx context.Context, req *v1.UpdateUserReq) (res *v1.UpdateUserRes, err error)
 }
 
