@@ -6,6 +6,7 @@ require (
 	github.com/goflyfox/gtoken v1.5.9
 	github.com/gogf/gf/contrib/drivers/sqlite/v2 v2.5.3
 	github.com/gogf/gf/v2 v2.5.3
+	github.com/mattn/go-sqlite3 v1.14.17
 	golang.org/x/crypto v0.11.0
 )
 
