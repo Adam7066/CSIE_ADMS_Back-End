@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"CSIE_ADMS_Back-End/internal/controller/auth"
 	"CSIE_ADMS_Back-End/internal/controller/user"
 	"CSIE_ADMS_Back-End/utility"
 	"context"
@@ -51,6 +52,7 @@ var (
 				}
 				group.Bind(
 					user.NewV1(),
+					auth.NewV1(),
 				)
 			})
 			s.Run()
