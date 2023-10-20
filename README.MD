@@ -3,9 +3,14 @@
 ## Setup
 1. `cp ./manifest/cofig.yaml.example ./manifest/config.yaml`
 2. 編輯 `./manifest/config.yaml`，修改相關資訊
-3. 執行 `gf run main.go`
+3. 執行 `go run main.go --init`
+   - 初始化 Database
+   - 新增預設 Admin 帳號
 
-## 預設帳號
+## Run
+- `gf run main.go`
+
+## 預設 Admin 帳號
 - Email：`admin@csie.adms`
 - Password：`1234567890`
 

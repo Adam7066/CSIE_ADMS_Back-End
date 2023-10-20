@@ -13,7 +13,6 @@ database:
     stdout: true
 
   default:
-    filename: "./CSIE_ADMS_DB.sqlite3"
     link: "sqlite::@file(./CSIE_ADMS_DB.sqlite3)"
 
 gToken:

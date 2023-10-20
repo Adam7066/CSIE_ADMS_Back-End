@@ -10,4 +10,4 @@ gfcli:
   gen:
     dao:
       - link: "sqlite:./CSIE_ADMS_DB.sqlite3"
-        tables: "users"
+        tablesEx: "sqlite_master, sqlite_sequence"
