@@ -11,7 +11,6 @@ import (
 
 	"CSIE_ADMS_Back-End/internal/cmd"
 	"CSIE_ADMS_Back-End/utility"
-	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
 )
 
@@ -28,41 +27,23 @@ func main() {
 func initDB() {
 	// init db
 	db, err := sql.Open("sqlite3", "./CSIE_ADMS_DB.sqlite3")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	utility.IfErrExit(err)
 	defer db.Close()
+
 	// init tables
 	sqlFilename := []string{
 		"users.sql", "students.sql", "adms.sql",
 	}
 	for _, filename := range sqlFilename {
 		sqlFile, err := os.ReadFile("./manifest/sql/" + filename)
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
+		utility.IfErrExit(err)
 		_, err = db.Exec(string(sqlFile))
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
+		utility.IfErrExit(err)
 	}
-	fmt.Println("init db success")
+	fmt.Println("init db & tables success")
 
-	// insert default admin
-	m := g.DB().Model("users")
-	encodedHash, _ := utility.HashPWD("1234567890")
-	_, err = m.Insert(g.Map{
-		"email":    "admin@csie.adms",
-		"password": encodedHash,
-		"username": "admin",
-		"role":     "admin",
-	})
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	fmt.Println("insert default admin success")
+	// insert default data
+	cmd.InitTablesData()
+
+	fmt.Println("insert default data success")
 }
