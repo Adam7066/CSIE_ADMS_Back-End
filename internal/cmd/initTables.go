@@ -6,7 +6,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-func InitTablesData() {
+func initTablesData() {
 	initUsers()
 	initGenders()
 	initDegrees()

@@ -25,6 +25,7 @@ type StarPlanColumns struct {
 	GsatScoreId                   string //
 	SchoolDeptCode                string //
 	RecommendedOrder              string //
+	AdmsOrder                     string //
 	SchoolRankingPercentage       string //
 	ChineseRankingPercentage      string //
 	EnglishRankingPercentage      string //
@@ -50,6 +51,7 @@ var starPlanColumns = StarPlanColumns{
 	GsatScoreId:                   "gsat_score_id",
 	SchoolDeptCode:                "school_dept_code",
 	RecommendedOrder:              "recommended_order",
+	AdmsOrder:                     "adms_order",
 	SchoolRankingPercentage:       "school_ranking_percentage",
 	ChineseRankingPercentage:      "chinese_ranking_percentage",
 	EnglishRankingPercentage:      "english_ranking_percentage",

@@ -5,6 +5,7 @@ CREATE TABLE star_plan -- 繁星計畫
     gsat_score_id                    INTEGER,          -- 學測成績_id
     school_dept_code                 TEXT,             -- 校系代碼
     recommended_order                INTEGER,          -- 推薦順位
+    adms_order                       INTEGER,          -- 錄取(通過篩選)志願序
     school_ranking_percentage        INTEGER,          -- 在校學業成績全校排名百分比
     chinese_ranking_percentage       INTEGER,          -- 國文學業總平均成績全校排名百分比
     english_ranking_percentage       INTEGER,          -- 英文學業總平均成績全校排名百分比

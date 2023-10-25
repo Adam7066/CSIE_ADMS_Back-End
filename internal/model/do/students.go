@@ -17,6 +17,7 @@ type Students struct {
 	GenderId           interface{} //
 	StudentCode        interface{} //
 	DegreeId           interface{} //
+	AdmissionYear      interface{} //
 	AdmissionMethodId  interface{} //
 	AdmissionGroupId   interface{} //
 	IdentityCategoryId interface{} //

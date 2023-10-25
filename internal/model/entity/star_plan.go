@@ -11,6 +11,7 @@ type StarPlan struct {
 	GsatScoreId                   int    `json:"gsatScoreId"                   ` //
 	SchoolDeptCode                string `json:"schoolDeptCode"                ` //
 	RecommendedOrder              int    `json:"recommendedOrder"              ` //
+	AdmsOrder                     int    `json:"admsOrder"                     ` //
 	SchoolRankingPercentage       int    `json:"schoolRankingPercentage"       ` //
 	ChineseRankingPercentage      int    `json:"chineseRankingPercentage"      ` //
 	EnglishRankingPercentage      int    `json:"englishRankingPercentage"      ` //

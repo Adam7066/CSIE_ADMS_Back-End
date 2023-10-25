@@ -1,10 +1,14 @@
 package cmd
 
 import (
+	"CSIE_ADMS_Back-End/internal/controller/admsInfo"
 	"CSIE_ADMS_Back-End/internal/controller/auth"
 	"CSIE_ADMS_Back-End/internal/controller/hello"
 	"CSIE_ADMS_Back-End/internal/controller/user"
+	"CSIE_ADMS_Back-End/utility"
 	"context"
+	"database/sql"
+	"fmt"
 	"github.com/goflyfox/gtoken/gtoken"
 	"github.com/gogf/gf/v2/container/gvar"
 	"github.com/gogf/gf/v2/frame/g"
@@ -12,6 +16,7 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 	_ "github.com/mattn/go-sqlite3"
 	"net/http"
+	"os"
 )
 
 var (
@@ -46,6 +51,7 @@ var (
 				group.Bind(
 					user.NewV1(),
 					auth.NewV1(),
+					admsInfo.NewV1(),
 				)
 			})
 			s.Run()
@@ -67,4 +73,27 @@ func MiddlewareCORS(r *ghttp.Request) {
 	}
 	r.Response.CORS(corsOptions)
 	r.Middleware.Next()
+}
+
+func InitDB() {
+	// init db
+	db, err := sql.Open("sqlite3", "./CSIE_ADMS_DB.sqlite3")
+	utility.IfErrExit(err)
+	defer db.Close()
+
+	// init tables
+	sqlFilename := []string{
+		"users.sql", "students.sql", "adms.sql",
+	}
+	for _, filename := range sqlFilename {
+		sqlFile, err := os.ReadFile("./manifest/sql/" + filename)
+		utility.IfErrExit(err)
+		_, err = db.Exec(string(sqlFile))
+		utility.IfErrExit(err)
+	}
+	fmt.Println("init db & tables success")
+
+	// insert default data
+	initTablesData()
+	fmt.Println("insert default data success")
 }

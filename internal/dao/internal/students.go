@@ -25,6 +25,7 @@ type StudentsColumns struct {
 	GenderId           string //
 	StudentCode        string //
 	DegreeId           string //
+	AdmissionYear      string //
 	AdmissionMethodId  string //
 	AdmissionGroupId   string //
 	IdentityCategoryId string //
@@ -41,6 +42,7 @@ var studentsColumns = StudentsColumns{
 	GenderId:           "gender_id",
 	StudentCode:        "student_code",
 	DegreeId:           "degree_id",
+	AdmissionYear:      "admission_year",
 	AdmissionMethodId:  "admission_method_id",
 	AdmissionGroupId:   "admission_group_id",
 	IdentityCategoryId: "identity_category_id",

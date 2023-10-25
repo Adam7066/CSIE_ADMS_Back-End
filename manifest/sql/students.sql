@@ -1,14 +1,15 @@
 CREATE TABLE students
 (
     id                   INTEGER PRIMARY KEY AUTOINCREMENT,
-    name                 TEXT      NOT NULL, -- 姓名
-    gender_id            INTEGER,            -- 性別_id
-    student_code         TEXT      NOT NULL, -- 學號
-    degree_id            INTEGER   NOT NULL, -- 學歷_id
-    admission_method_id  INTEGER   NOT NULL, -- 入學方式_id
-    admission_group_id   INTEGER,            -- 入學組別_id
-    identity_category_id INTEGER,            -- 身分類別_id
-    graduated_school_id  INTEGER   NOT NULL, -- 畢業學校_id
+    name                 TEXT      NOT NULL,        -- 姓名
+    gender_id            INTEGER,                   -- 性別_id
+    student_code         TEXT      NOT NULL UNIQUE, -- 學號
+    degree_id            INTEGER   NOT NULL,        -- 學歷_id
+    admission_year       INTEGER   NOT NULL,        -- 入學年度
+    admission_method_id  INTEGER   NOT NULL,        -- 入學方式_id
+    admission_group_id   INTEGER,                   -- 入學組別_id
+    identity_category_id INTEGER,                   -- 身分類別_id
+    graduated_school_id  INTEGER   NOT NULL,        -- 畢業學校_id
     created_at           TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at           TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at           TIMESTAMP,

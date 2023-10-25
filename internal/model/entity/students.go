@@ -15,6 +15,7 @@ type Students struct {
 	GenderId           int         `json:"genderId"           ` //
 	StudentCode        string      `json:"studentCode"        ` //
 	DegreeId           int         `json:"degreeId"           ` //
+	AdmissionYear      int         `json:"admissionYear"      ` //
 	AdmissionMethodId  int         `json:"admissionMethodId"  ` //
 	AdmissionGroupId   int         `json:"admissionGroupId"   ` //
 	IdentityCategoryId int         `json:"identityCategoryId" ` //

@@ -16,6 +16,7 @@ type StarPlan struct {
 	GsatScoreId                   interface{} //
 	SchoolDeptCode                interface{} //
 	RecommendedOrder              interface{} //
+	AdmsOrder                     interface{} //
 	SchoolRankingPercentage       interface{} //
 	ChineseRankingPercentage      interface{} //
 	EnglishRankingPercentage      interface{} //
