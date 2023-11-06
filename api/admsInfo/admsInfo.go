@@ -11,6 +11,7 @@ import (
 )
 
 type IAdmsInfoV1 interface {
+	UploadApplyApcs(ctx context.Context, req *v1.UploadApplyApcsReq) (res *v1.UploadApplyApcsRes, err error)
 	UploadStarPlan(ctx context.Context, req *v1.UploadStarPlanReq) (res *v1.UploadStarPlanRes, err error)
 }
 

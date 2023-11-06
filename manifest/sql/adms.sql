@@ -26,6 +26,24 @@ CREATE TABLE star_plan -- 繁星計畫
     FOREIGN KEY (gsat_score_id) REFERENCES gsat_score (id)
 );
 
+CREATE TABLE apply_apcs -- 申請入學_APCS
+(
+    id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+    stu_id                INTEGER NOT NULL, -- 學生_id
+    gsat_score_id         INTEGER,          -- 學測成績_id
+    school_dept_code      TEXT,             -- 校系代碼
+    gsat_cal_score        DOUBLE,           -- 學科能力測驗成績
+    project_score_1       DOUBLE,           -- 指定項目一成績
+    project_score_2       DOUBLE,           -- 指定項目二成績
+    project_test_score    DOUBLE,           -- 指定項目甄試成績
+    selection_total_score DOUBLE,           -- 甄選總成績
+    adms_status           TEXT,             -- 招生名額錄取狀態
+    adms_rank             INTEGER,          -- 招生名額名次
+    adms_total_rank       INTEGER,          -- 招生名額總名次
+    FOREIGN KEY (stu_id) REFERENCES students (id),
+    FOREIGN KEY (gsat_score_id) REFERENCES gsat_score (id)
+);
+
 CREATE TABLE gsat_score -- 學測成績
 (
     id               INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -53,7 +53,7 @@ func (c *ControllerV1) UploadStarPlan(ctx context.Context, req *v1.UploadStarPla
 	}
 
 	// Handle file
-	err = handleUploadedFile(req.Year, filename)
+	err = handleUploadStarPlanFile(req.Year, filename)
 	if err != nil {
 		r.Response.WriteJsonExit(v1.UploadStarPlanRes{
 			Error: err.Error(),
@@ -69,7 +69,7 @@ func (c *ControllerV1) UploadStarPlan(ctx context.Context, req *v1.UploadStarPla
 	return
 }
 
-func handleUploadedFile(year int, filename string) error {
+func handleUploadStarPlanFile(year int, filename string) error {
 	path := fmt.Sprintf("./upload/%s", filename)
 	f, err := excelize.OpenFile(path)
 	if err != nil {
@@ -111,6 +111,7 @@ func handleUploadedFile(year int, filename string) error {
 				student["identity_category_id"], _ = g.Model("identity_categories").Fields("id").Where("name", col).Value()
 			case "推薦學校代碼":
 				student["graduated_school_id"], _ = g.Model("schools").Fields("id").Where("school_code", col).Value()
+
 			case "學測應試號碼":
 				gsatScore["gsat_test_number"] = col
 			case "學測國文級分":
