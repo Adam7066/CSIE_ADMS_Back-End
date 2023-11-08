@@ -1,8 +1,8 @@
 # CSIE_ADMS_Back-End
 
 ## Setup
-1. `cp ./manifest/cofig.yaml.example ./manifest/config.yaml`
-2. 編輯 `./manifest/config.yaml`，修改相關資訊
+1. `cp ./manifest/config/config.yaml.example ./manifest/config/config.yaml`
+2. 編輯 `./manifest/config/config.yaml`，修改相關資訊
 3. 執行 `go run main.go --init`
    - 初始化 Database
    - 新增預設 Admin 帳號
