@@ -26,6 +26,23 @@ CREATE TABLE star_plan -- 繁星計畫
     FOREIGN KEY (gsat_score_id) REFERENCES gsat_score (id)
 );
 
+CREATE TABLE apply_general -- 申請入學_一般組
+(
+    id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+    stu_id                INTEGER NOT NULL, -- 學生_id
+    gsat_score_id         INTEGER,          -- 學測成績_id
+    school_dept_code      TEXT,             -- 校系代碼
+    gsat_cal_score        DOUBLE,           -- 學科能力測驗成績
+    project_score_1       DOUBLE,           -- 指定項目一成績
+    project_test_score    DOUBLE,           -- 指定項目甄試成績
+    selection_total_score DOUBLE,           -- 甄選總成績
+    adms_status           TEXT,             -- 招生名額錄取狀態
+    adms_rank             INTEGER,          -- 招生名額名次
+    adms_total_rank       INTEGER,          -- 招生名額總名次
+    FOREIGN KEY (stu_id) REFERENCES students (id),
+    FOREIGN KEY (gsat_score_id) REFERENCES gsat_score (id)
+);
+
 CREATE TABLE apply_apcs -- 申請入學_APCS
 (
     id                    INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -47,14 +64,14 @@ CREATE TABLE apply_apcs -- 申請入學_APCS
 CREATE TABLE gsat_score -- 學測成績
 (
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
-    gsat_test_number TEXT,                                            -- 學測應試號碼
-    chinese          INTEGER CHECK ( chinese BETWEEN 0 AND 15),       -- 國文級分
-    english          INTEGER CHECK ( english BETWEEN 0 AND 15),       -- 英文級分
-    math             INTEGER CHECK ( math BETWEEN 0 AND 15),          -- 數學級分
-    nature           INTEGER CHECK ( nature BETWEEN 0 AND 15),        -- 自然級分
-    society          INTEGER CHECK ( society BETWEEN 0 AND 15),       -- 社會級分
-    listening        TEXT CHECK ( listening IN ('A', 'B', 'C', 'F')), -- 聽力測驗
-    sum_score        INTEGER CHECK ( sum_score BETWEEN 0 AND 75)      -- 總級分
+    gsat_test_number TEXT,                                                    -- 學測應試號碼
+    chinese          INTEGER CHECK ( chinese BETWEEN 0 AND 15),               -- 國文級分
+    english          INTEGER CHECK ( english BETWEEN 0 AND 15),               -- 英文級分
+    math             INTEGER CHECK ( math BETWEEN 0 AND 15),                  -- 數學級分
+    nature           INTEGER CHECK ( nature BETWEEN 0 AND 15),                -- 自然級分
+    society          INTEGER CHECK ( society BETWEEN 0 AND 15),               -- 社會級分
+    listening        TEXT CHECK ( listening IN ('A', 'B', 'C', 'F', '缺考')), -- 聽力測驗
+    sum_score        INTEGER CHECK ( sum_score BETWEEN 0 AND 75)              -- 總級分
 );
 
 CREATE TRIGGER update_sum_score
