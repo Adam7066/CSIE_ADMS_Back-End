@@ -15,8 +15,7 @@ type GetUserResData struct {
 }
 
 type GetUserReq struct {
-	g.Meta `path:"/get_user" tags:"GetUser" method:"get"`
-	Id     int `p:"id"`
+	g.Meta `path:"/user/{uid}" tags:"GetUser" method:"get"`
 }
 
 type GetUserRes struct {

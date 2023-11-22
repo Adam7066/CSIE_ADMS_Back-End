@@ -3,7 +3,7 @@ package v1
 import "github.com/gogf/gf/v2/frame/g"
 
 type GetUsersReq struct {
-	g.Meta `path:"/get_users" tags:"GetUsers" method:"get"`
+	g.Meta `path:"/users" tags:"GetUsers" method:"get"`
 }
 
 type GetUsersRes struct {

@@ -19,15 +19,15 @@ func (c *ControllerV1) UpdateUser(ctx context.Context, req *v1.UpdateUserReq) (r
 
 	tokenID := r.GetCtxVar("id").Int()
 	id := tokenID
-	if req.Id > 0 {
-		if req.Id != id {
-			if utility.IsAdmin(id) {
-				r.Response.WriteJsonExit(v1.UpdateUserRes{
-					Error: "permission denied",
-				})
-			}
-			id = req.Id
+	uid := r.Get("uid").Int()
+
+	if uid > 0 && uid != tokenID {
+		if !utility.IsAdmin(tokenID) {
+			r.Response.WriteJsonExit(v1.UpdateUserRes{
+				Error: "permission denied",
+			})
 		}
+		id = uid
 	}
 
 	data := g.Map{}
@@ -47,6 +47,7 @@ func (c *ControllerV1) UpdateUser(ctx context.Context, req *v1.UpdateUserReq) (r
 	if req.Username != "" {
 		data["username"] = req.Username
 	}
+
 	_, err = m.Update(data, "id", id)
 	if err != nil {
 		r.Response.WriteJsonExit(v1.UpdateUserRes{

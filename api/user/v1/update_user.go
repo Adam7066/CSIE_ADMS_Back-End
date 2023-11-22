@@ -5,8 +5,7 @@ import (
 )
 
 type UpdateUserReq struct {
-	g.Meta   `path:"/update_user" tags:"UpdateUser" method:"post"`
-	Id       int    `p:"id"`
+	g.Meta   `path:"/user/{uid}" tags:"UpdateUser" method:"put"`
 	Email    string `p:"email" v:"email"`
 	Password string `p:"password" v:"password|length:10,18"`
 	Username string `p:"username"`

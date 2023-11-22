@@ -5,7 +5,7 @@ import (
 )
 
 type CreateUserReq struct {
-	g.Meta   `path:"/create_user" tags:"CreateUser" method:"post"`
+	g.Meta   `path:"/user" tags:"CreateUser" method:"post"`
 	Email    string `p:"email" v:"required|email"`
 	Password string `p:"password" v:"required|password|length:10,18"`
 	Username string `p:"username" v:"required"`

@@ -18,15 +18,14 @@ func (c *ControllerV1) GetUser(ctx context.Context, req *v1.GetUserReq) (res *v1
 	}
 
 	id := r.GetCtxVar("id").Int()
-	if req.Id > 0 {
-		if req.Id != id {
-			if !utility.IsAdmin(id) {
-				r.Response.WriteJsonExit(v1.GetUserRes{
-					Error: "permission denied",
-				})
-			}
-			id = req.Id
+	uid := r.Get("uid").Int()
+	if uid > 0 && uid != id {
+		if !utility.IsAdmin(id) {
+			r.Response.WriteJsonExit(v1.GetUserRes{
+				Error: "permission denied",
+			})
 		}
+		id = uid
 	}
 
 	resData := v1.GetUserResData{}
