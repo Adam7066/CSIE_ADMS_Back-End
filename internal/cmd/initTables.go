@@ -53,6 +53,12 @@ func initAdmissionMethods() {
 		{"name": "繁星推薦"},
 		{"name": "申請入學"},
 		{"name": "分發入學"},
+		{"name": "運動績優甄審"},
+		{"name": "外國學生招生"},
+		{"name": "僑生單獨招生"},
+		{"name": "僑生海外聯合招生"},
+		{"name": "轉學生招生"},
+		{"name": "四技二專登記分發"},
 	}).Insert()
 	utility.IfErrExit(err)
 }
@@ -70,6 +76,9 @@ func initAdmissionGroups() {
 func initIdentityCategories() {
 	_, err := g.Model("identity_categories").Data(g.List{
 		{"name": "一般生"},
+		{"name": "外籍生"},
+		{"name": "僑生"},
+		{"name": "港澳生"},
 	}).Insert()
 	utility.IfErrExit(err)
 }

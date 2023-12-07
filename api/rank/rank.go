@@ -2,14 +2,14 @@
 // Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // =================================================================================
 
-package auth
+package rank
 
 import (
 	"context"
 
-	"CSIE_ADMS_Back-End/api/auth/v1"
+	"CSIE_ADMS_Back-End/api/rank/v1"
 )
 
-type IAuthV1 interface {
-	IsAdmin(ctx context.Context, req *v1.IsAdminReq) (res *v1.IsAdminRes, err error)
+type IRankV1 interface {
+	UploadSemesterRank(ctx context.Context, req *v1.UploadSemesterRankReq) (res *v1.UploadSemesterRankRes, err error)
 }

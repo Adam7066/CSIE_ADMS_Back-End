@@ -1,12 +1,12 @@
 // =================================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. 
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // =================================================================================
 
 package user
 
 import (
 	"context"
-	
+
 	"CSIE_ADMS_Back-End/api/user/v1"
 )
 
@@ -16,5 +16,3 @@ type IUserV1 interface {
 	GetUsers(ctx context.Context, req *v1.GetUsersReq) (res *v1.GetUsersRes, err error)
 	UpdateUser(ctx context.Context, req *v1.UpdateUserReq) (res *v1.UpdateUserRes, err error)
 }
-
-

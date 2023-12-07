@@ -9,7 +9,7 @@ CREATE TABLE students
     admission_method_id  INTEGER   NOT NULL,        -- 入學方式_id
     admission_group_id   INTEGER,                   -- 入學組別_id
     identity_category_id INTEGER,                   -- 身分類別_id
-    graduated_school_id  INTEGER   NOT NULL,        -- 畢業學校_id
+    graduated_school_id  INTEGER,                   -- 畢業學校_id
     created_at           TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at           TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at           TIMESTAMP,

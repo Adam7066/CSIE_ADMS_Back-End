@@ -4,6 +4,7 @@ import (
 	"CSIE_ADMS_Back-End/internal/controller/admsInfo"
 	"CSIE_ADMS_Back-End/internal/controller/auth"
 	"CSIE_ADMS_Back-End/internal/controller/hello"
+	"CSIE_ADMS_Back-End/internal/controller/rank"
 	"CSIE_ADMS_Back-End/internal/controller/user"
 	"CSIE_ADMS_Back-End/utility"
 	"context"
@@ -52,6 +53,7 @@ var (
 					user.NewV1(),
 					auth.NewV1(),
 					admsInfo.NewV1(),
+					rank.NewV1(),
 				)
 			})
 			s.Run()
@@ -76,6 +78,10 @@ func MiddlewareCORS(r *ghttp.Request) {
 }
 
 func InitDB() {
+	// remove old db
+	err := os.Remove("./CSIE_ADMS_DB.sqlite3")
+	utility.IfErrExit(err)
+
 	// init db
 	db, err := sql.Open("sqlite3", "./CSIE_ADMS_DB.sqlite3")
 	utility.IfErrExit(err)
@@ -83,7 +89,7 @@ func InitDB() {
 
 	// init tables
 	sqlFilename := []string{
-		"users.sql", "students.sql", "adms.sql",
+		"users.sql", "students.sql", "adms.sql", "rank.sql",
 	}
 	for _, filename := range sqlFilename {
 		sqlFile, err := os.ReadFile("./manifest/sql/" + filename)
