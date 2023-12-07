@@ -12,4 +12,5 @@ import (
 
 type IRankV1 interface {
 	UploadSemesterRank(ctx context.Context, req *v1.UploadSemesterRankReq) (res *v1.UploadSemesterRankRes, err error)
+	UploadYearsRank(ctx context.Context, req *v1.UploadYearsRankReq) (res *v1.UploadYearsRankRes, err error)
 }
