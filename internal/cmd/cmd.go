@@ -5,6 +5,7 @@ import (
 	"CSIE_ADMS_Back-End/internal/controller/auth"
 	"CSIE_ADMS_Back-End/internal/controller/hello"
 	"CSIE_ADMS_Back-End/internal/controller/rank"
+	"CSIE_ADMS_Back-End/internal/controller/student"
 	"CSIE_ADMS_Back-End/internal/controller/user"
 	"CSIE_ADMS_Back-End/utility"
 	"context"
@@ -54,6 +55,7 @@ var (
 					auth.NewV1(),
 					admsInfo.NewV1(),
 					rank.NewV1(),
+					student.NewV1(),
 				)
 			})
 			s.Run()
