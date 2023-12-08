@@ -8,10 +8,10 @@ import (
 	"CSIE_ADMS_Back-End/api/student/v1"
 )
 
-func (c *ControllerV1) StudentGetYears(ctx context.Context, req *v1.StudentGetYearsReq) (res *v1.StudentGetYearsRes, err error) {
+func (c *ControllerV1) GetStudentYears(ctx context.Context, req *v1.GetStudentYearsReq) (res *v1.GetStudentYearsRes, err error) {
 	r := g.RequestFromCtx(ctx)
 	if err := r.Parse(&req); err != nil {
-		r.Response.WriteJsonExit(v1.StudentGetYearsRes{
+		r.Response.WriteJsonExit(v1.GetStudentYearsRes{
 			Error: err.Error(),
 		})
 	}
@@ -20,7 +20,7 @@ func (c *ControllerV1) StudentGetYears(ctx context.Context, req *v1.StudentGetYe
 	admissionYears, err := m.Fields("admission_year").
 		Distinct().OrderAsc("admission_year").All()
 	if err != nil {
-		r.Response.WriteJsonExit(v1.StudentGetYearsRes{
+		r.Response.WriteJsonExit(v1.GetStudentYearsRes{
 			Error: err.Error(),
 		})
 	}
@@ -30,7 +30,7 @@ func (c *ControllerV1) StudentGetYears(ctx context.Context, req *v1.StudentGetYe
 		resData = append(resData, admissionYear["admission_year"].Int())
 	}
 
-	r.Response.WriteJson(v1.StudentGetYearsRes{
+	r.Response.WriteJson(v1.GetStudentYearsRes{
 		Data: resData,
 	})
 	return

@@ -11,5 +11,6 @@ import (
 )
 
 type IStudentV1 interface {
-	StudentGetYears(ctx context.Context, req *v1.StudentGetYearsReq) (res *v1.StudentGetYearsRes, err error)
+	GetStudentByYear(ctx context.Context, req *v1.GetStudentByYearReq) (res *v1.GetStudentByYearRes, err error)
+	GetStudentYears(ctx context.Context, req *v1.GetStudentYearsReq) (res *v1.GetStudentYearsRes, err error)
 }
